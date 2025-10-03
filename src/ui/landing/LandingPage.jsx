@@ -4,12 +4,12 @@ import { useState } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import styles from "./LandingPage.module.css";
-import logo from "@/assets/logo.png"; // aligne avec ton arborescence
+import logo from "@/assets/logo.png";
 
 /**
  * LandingPage - Page d'accueil pour EPSI – La Soutenance
  * @param {Object} props
- * @param {Function} [props.onNavigate] - Callback navigation custom (optionnel)
+ * @param {Function} [props.onNavigate]
  */
 export default function LandingPage({ onNavigate }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);

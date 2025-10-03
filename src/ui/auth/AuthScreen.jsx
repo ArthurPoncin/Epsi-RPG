@@ -200,7 +200,7 @@ export default function AuthScreen({
 
           {mode === "login" && (
             <div className={styles.forgotPassword}>
-              <a href="#" className={styles.link}>
+              <a href="/auth/forgot" className={styles.link}>
                 Mot de passe oublié ?
               </a>
             </div>

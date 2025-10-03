@@ -1,0 +1,385 @@
+/* Complete redesign with dark gamer aesthetic, angular HUD-style panels, logo-inspired color palette */
+
+/* Container principal */
+.container {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    position: relative;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
+      "Droid Sans", "Helvetica Neue", sans-serif;
+  }
+  
+  /* Fond sombre sobre avec grille discrète - palette inspirée du logo */
+  .background {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, #0a0e1a 0%, #1a1d2e 50%, #0f1123 100%);
+    z-index: 0;
+  }
+  
+  .background::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: repeating-linear-gradient(
+        90deg,
+        rgba(56, 163, 165, 0.02) 0px,
+        rgba(56, 163, 165, 0.02) 1px,
+        transparent 1px,
+        transparent 60px
+      ),
+      repeating-linear-gradient(
+        0deg,
+        rgba(56, 163, 165, 0.02) 0px,
+        rgba(56, 163, 165, 0.02) 1px,
+        transparent 1px,
+        transparent 60px
+      );
+    opacity: 0.5;
+  }
+  
+  /* Carte principale - style HUD anguleux avec accents du logo */
+  .card {
+    position: relative;
+    z-index: 1;
+    background: linear-gradient(145deg, #1a1d2e 0%, #0f1123 100%);
+    clip-path: polygon(0 0, calc(100% - 20px) 0, 100% 20px, 100% 100%, 20px 100%, 0 calc(100% - 20px));
+    box-shadow: 0 0 40px rgba(56, 163, 165, 0.25), 0 0 80px rgba(75, 63, 114, 0.2), inset 0 0 60px rgba(0, 0, 0, 0.5);
+    width: 100%;
+    max-width: 440px;
+    padding: 2.5rem;
+    border: 2px solid rgba(56, 163, 165, 0.3);
+    position: relative;
+  }
+  
+  .card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #38a3a5, #4b3f72, transparent);
+    animation: scanline 3s linear infinite;
+  }
+  
+  @keyframes scanline {
+    0% {
+      transform: translateX(-100%);
+    }
+    100% {
+      transform: translateX(100%);
+    }
+  }
+  
+  /* En-tête avec logo */
+  .header {
+    text-align: center;
+    margin-bottom: 2rem;
+    position: relative;
+  }
+  
+  .logo {
+    max-width: 200px;
+    height: auto;
+    margin: 0 auto 1rem;
+    display: block;
+    filter: drop-shadow(0 0 20px rgba(56, 163, 165, 0.3));
+  }
+  
+  .subtitle {
+    font-size: 0.875rem;
+    color: #94a3b8;
+    margin: 0;
+    letter-spacing: 0.5px;
+  }
+  
+  /* Onglets - style HUD avec accents cyan du logo */
+  .tabs {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    position: relative;
+  }
+  
+  .tab {
+    flex: 1;
+    padding: 1rem 1.5rem;
+    background: rgba(15, 17, 35, 0.6);
+    border: 1px solid rgba(56, 163, 165, 0.3);
+    clip-path: polygon(8px 0, 100% 0, calc(100% - 8px) 100%, 0 100%);
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #64748b;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  
+  .tab:hover:not(:disabled) {
+    color: #cbd5e1;
+    background: rgba(56, 163, 165, 0.15);
+    border-color: rgba(56, 163, 165, 0.6);
+    box-shadow: 0 0 20px rgba(56, 163, 165, 0.3);
+  }
+  
+  .tab:disabled {
+    cursor: not-allowed;
+    opacity: 0.4;
+  }
+  
+  .tabActive {
+    color: #38a3a5;
+    background: rgba(56, 163, 165, 0.2);
+    border-color: #38a3a5;
+    box-shadow: 0 0 30px rgba(56, 163, 165, 0.4), inset 0 0 20px rgba(56, 163, 165, 0.1);
+  }
+  
+  .tab:focus-visible {
+    outline: 2px solid #38a3a5;
+    outline-offset: 4px;
+  }
+  
+  /* Bannières de message - style HUD pop-up avec couleurs du logo */
+  .errorBanner,
+  .successBanner {
+    padding: 1rem 1.25rem;
+    clip-path: polygon(10px 0, 100% 0, calc(100% - 10px) 100%, 0 100%);
+    margin-bottom: 1.5rem;
+    font-size: 0.875rem;
+    line-height: 1.5;
+    font-weight: 500;
+    letter-spacing: 0.3px;
+    position: relative;
+    animation: slideIn 0.3s ease-out;
+  }
+  
+  @keyframes slideIn {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .errorBanner {
+    background: rgba(230, 57, 70, 0.15);
+    color: #ff8a95;
+    border: 1px solid rgba(230, 57, 70, 0.5);
+    box-shadow: 0 0 20px rgba(230, 57, 70, 0.3);
+  }
+  
+  .errorBanner::before {
+    content: "⚠";
+    margin-right: 0.5rem;
+    font-size: 1.1rem;
+  }
+  
+  .successBanner {
+    background: rgba(144, 190, 109, 0.15);
+    color: #b8e986;
+    border: 1px solid rgba(144, 190, 109, 0.5);
+    box-shadow: 0 0 20px rgba(144, 190, 109, 0.3);
+  }
+  
+  .successBanner::before {
+    content: "✓";
+    margin-right: 0.5rem;
+    font-size: 1.1rem;
+  }
+  
+  /* Formulaire */
+  .form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  
+  .helpText {
+    font-size: 0.9rem;
+    color: #94a3b8;
+    text-align: center;
+    font-style: italic;
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.3px;
+  }
+  
+  /* Champs */
+  .field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.625rem;
+  }
+  
+  .label {
+    display: flex;
+    align-items: center;
+    gap: 0.625rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #cbd5e1;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  
+  /* Icône avec glow cyan du logo */
+  .icon {
+    font-size: 1rem;
+    filter: drop-shadow(0 0 4px rgba(56, 163, 165, 0.6));
+  }
+  
+  /* Input avec bordure cyan du logo */
+  .input {
+    padding: 1rem 1.25rem;
+    border: 1px solid rgba(56, 163, 165, 0.3);
+    background: rgba(15, 17, 35, 0.6);
+    clip-path: polygon(6px 0, 100% 0, calc(100% - 6px) 100%, 0 100%);
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    color: #e2e8f0;
+  }
+  
+  .input::placeholder {
+    color: #475569;
+  }
+  
+  .input:focus {
+    outline: none;
+    border-color: #38a3a5;
+    background: rgba(15, 17, 35, 0.8);
+    box-shadow: 0 0 20px rgba(56, 163, 165, 0.4), inset 0 0 10px rgba(56, 163, 165, 0.1);
+  }
+  
+  .input:disabled {
+    background: rgba(15, 17, 35, 0.3);
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
+  
+  /* Lien mot de passe oublié avec couleur violet du logo */
+  .forgotPassword {
+    text-align: right;
+    margin-top: -0.75rem;
+  }
+  
+  .link {
+    font-size: 0.875rem;
+    color: #4b3f72;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    letter-spacing: 0.3px;
+  }
+  
+  .link:hover {
+    color: #6d5a9c;
+    text-shadow: 0 0 10px rgba(75, 63, 114, 0.6);
+  }
+  
+  .link:focus-visible {
+    outline: 2px solid #4b3f72;
+    outline-offset: 3px;
+  }
+  
+  /* Bouton de soumission - massif avec glow inspiré des couleurs du logo */
+  .submitButton {
+    padding: 1.25rem 2rem;
+    background: linear-gradient(135deg, #38a3a5 0%, #4b3f72 100%);
+    color: #ffffff;
+    border: 2px solid rgba(56, 163, 165, 0.6);
+    clip-path: polygon(12px 0, 100% 0, calc(100% - 12px) 100%, 0 100%);
+    font-size: 1.05rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    margin-top: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .submitButton::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transform: translateX(-100%);
+    transition: transform 0.6s ease;
+  }
+  
+  .submitButton:hover:not(:disabled) {
+    background: linear-gradient(135deg, #4b3f72 0%, #38a3a5 100%);
+    box-shadow: 0 0 30px rgba(56, 163, 165, 0.6), 0 0 60px rgba(75, 63, 114, 0.4), inset 0 0 20px rgba(255, 255, 255, 0.1);
+    transform: translateY(-2px);
+    border-color: #4b3f72;
+  }
+  
+  .submitButton:hover:not(:disabled)::before {
+    transform: translateX(100%);
+  }
+  
+  .submitButton:active:not(:disabled) {
+    transform: translateY(0);
+  }
+  
+  .submitButton:disabled {
+    background: rgba(71, 85, 105, 0.5);
+    border-color: rgba(71, 85, 105, 0.3);
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+  }
+  
+  .submitButton:focus-visible {
+    outline: 2px solid #38a3a5;
+    outline-offset: 4px;
+  }
+  
+  /* Spinner de chargement */
+  .spinner {
+    width: 18px;
+    height: 18px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-top-color: #ffffff;
+    border-radius: 50%;
+    animation: spin 0.6s linear infinite;
+  }
+  
+  @keyframes spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  
+  /* Responsive */
+  @media (max-width: 480px) {
+    .card {
+      padding: 2rem 1.5rem;
+    }
+  
+    .logo {
+      max-width: 140px;
+    }
+  
+    .tab {
+      font-size: 0.85rem;
+      padding: 0.875rem 1rem;
+    }
+  
+    .submitButton {
+      padding: 1.125rem 1.5rem;
+      font-size: 0.95rem;
+    }
+  }
+  

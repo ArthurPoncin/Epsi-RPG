@@ -1,0 +1,716 @@
+/* Landing page with dark gamer HUD aesthetic matching AuthScreen */
+
+/* Container principal */
+.container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
+      "Droid Sans", "Helvetica Neue", sans-serif;
+  }
+  
+  /* Added subtle corner accent lines for HUD aesthetic */
+  .container::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 200px;
+    height: 200px;
+    border-top: 2px solid rgba(56, 163, 165, 0.2);
+    border-left: 2px solid rgba(56, 163, 165, 0.2);
+    z-index: 5;
+    pointer-events: none;
+  }
+  
+  .container::after {
+    content: "";
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    width: 200px;
+    height: 200px;
+    border-bottom: 2px solid rgba(75, 63, 114, 0.2);
+    border-right: 2px solid rgba(75, 63, 114, 0.2);
+    z-index: 5;
+    pointer-events: none;
+  }
+  
+  /* Enhanced background with decorative elements */
+  .background {
+    position: fixed;
+    inset: 0;
+    background: linear-gradient(135deg, #0a0e1a 0%, #1a1d2e 50%, #0f1123 100%);
+    z-index: 0;
+    overflow: hidden;
+  }
+  
+  .background::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: repeating-linear-gradient(
+        90deg,
+        rgba(56, 163, 165, 0.03) 0px,
+        rgba(56, 163, 165, 0.03) 1px,
+        transparent 1px,
+        transparent 60px
+      ),
+      repeating-linear-gradient(
+        0deg,
+        rgba(56, 163, 165, 0.03) 0px,
+        rgba(56, 163, 165, 0.03) 1px,
+        transparent 1px,
+        transparent 60px
+      );
+    opacity: 0.6;
+  }
+  
+  /* Added decorative geometric shapes in background for more visual interest */
+  .background::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 20% 30%, rgba(75, 63, 114, 0.15) 0%, transparent 50%),
+      radial-gradient(circle at 80% 70%, rgba(56, 163, 165, 0.1) 0%, transparent 50%),
+      radial-gradient(circle at 50% 50%, rgba(230, 57, 70, 0.05) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  
+  /* Navbar - style HUD anguleux */
+  .navbar {
+    position: relative;
+    z-index: 10;
+    background: rgba(15, 17, 35, 0.9);
+    border-bottom: 2px solid rgba(56, 163, 165, 0.3);
+    backdrop-filter: blur(10px);
+  }
+  
+  .navContent {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1rem 2rem;
+    display: flex;
+    align-items: center;
+    /* Updated to space-between for proper navbar layout */
+    justify-content: space-between;
+    gap: 2rem;
+  }
+  
+  .navBrand {
+    display: flex;
+    align-items: center;
+  }
+  
+  .navLogo {
+    height: 50px;
+    width: auto;
+    filter: drop-shadow(0 0 10px rgba(56, 163, 165, 0.3));
+  }
+  
+  /* Updated navbar links to be centered in their section */
+  .navLinks {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    flex: 1;
+  }
+  
+  .navLink {
+    color: #cbd5e1;
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    position: relative;
+  }
+  
+  .navLink::after {
+    content: "";
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: #38a3a5;
+    transition: width 0.3s ease;
+  }
+  
+  .navLink:hover {
+    color: #38a3a5;
+  }
+  
+  .navLink:hover::after {
+    width: 100%;
+  }
+  
+  /* Added new navAuth container for right-aligned auth buttons */
+  .navAuth {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  
+  .navButton {
+    padding: 0.625rem 1.25rem;
+    background: rgba(15, 17, 35, 0.6);
+    border: 1px solid rgba(56, 163, 165, 0.3);
+    clip-path: polygon(6px 0, 100% 0, calc(100% - 6px) 100%, 0 100%);
+    color: #cbd5e1;
+    font-size: 0.875rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  
+  .navButton:hover {
+    background: rgba(56, 163, 165, 0.15);
+    border-color: rgba(56, 163, 165, 0.6);
+    color: #38a3a5;
+    box-shadow: 0 0 20px rgba(56, 163, 165, 0.3);
+  }
+  
+  .navButtonPrimary {
+    background: linear-gradient(135deg, #38a3a5 0%, #4b3f72 100%);
+    border-color: rgba(56, 163, 165, 0.6);
+    color: #ffffff;
+  }
+  
+  .navButtonPrimary:hover {
+    background: linear-gradient(135deg, #4b3f72 0%, #38a3a5 100%);
+    box-shadow: 0 0 20px rgba(56, 163, 165, 0.5);
+  }
+  
+  /* Mobile menu */
+  .mobileMenuButton {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+  }
+  
+  .hamburger {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: #38a3a5;
+    position: relative;
+    transition: all 0.3s ease;
+  }
+  
+  .hamburger::before,
+  .hamburger::after {
+    content: "";
+    position: absolute;
+    width: 24px;
+    height: 2px;
+    background: #38a3a5;
+    transition: all 0.3s ease;
+  }
+  
+  .hamburger::before {
+    top: -8px;
+  }
+  
+  .hamburger::after {
+    bottom: -8px;
+  }
+  
+  .mobileMenu {
+    display: none;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1.5rem 2rem;
+    background: rgba(15, 17, 35, 0.95);
+    border-top: 1px solid rgba(56, 163, 165, 0.2);
+  }
+  
+  .mobileLink {
+    color: #cbd5e1;
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 500;
+    padding: 0.5rem 0;
+    transition: all 0.2s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  
+  .mobileLink:hover {
+    color: #38a3a5;
+  }
+  
+  .mobileButton {
+    padding: 0.875rem 1.5rem;
+    background: rgba(15, 17, 35, 0.6);
+    border: 1px solid rgba(56, 163, 165, 0.3);
+    clip-path: polygon(6px 0, 100% 0, calc(100% - 6px) 100%, 0 100%);
+    color: #cbd5e1;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    text-align: center;
+  }
+  
+  .mobileButton:hover {
+    background: rgba(56, 163, 165, 0.15);
+    border-color: rgba(56, 163, 165, 0.6);
+    color: #38a3a5;
+  }
+  
+  .mobileButtonPrimary {
+    background: linear-gradient(135deg, #38a3a5 0%, #4b3f72 100%);
+    border-color: rgba(56, 163, 165, 0.6);
+    color: #ffffff;
+  }
+  
+  .mobileButtonPrimary:hover {
+    background: linear-gradient(135deg, #4b3f72 0%, #38a3a5 100%);
+  }
+  
+  /* Hero Section */
+  .hero {
+    position: relative;
+    z-index: 1;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4rem 2rem;
+    min-height: 600px;
+    overflow: hidden;
+  }
+  
+  /* Added HUD corner brackets to hero section */
+  .hero::before {
+    content: "";
+    position: absolute;
+    top: 10%;
+    left: 5%;
+    width: 120px;
+    height: 120px;
+    border-top: 3px solid rgba(56, 163, 165, 0.4);
+    border-left: 3px solid rgba(56, 163, 165, 0.4);
+    z-index: 0;
+    pointer-events: none;
+  }
+  
+  .hero::after {
+    content: "";
+    position: absolute;
+    bottom: 10%;
+    right: 5%;
+    width: 120px;
+    height: 120px;
+    border-bottom: 3px solid rgba(75, 63, 114, 0.4);
+    border-right: 3px solid rgba(75, 63, 114, 0.4);
+    z-index: 0;
+    pointer-events: none;
+  }
+  
+  .heroContent {
+    max-width: 800px;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+  }
+  
+  /* Added hero logo styling */
+  .heroLogo {
+    max-width: 280px;
+    height: auto;
+    margin: 0 auto .5rem;
+    filter: drop-shadow(0 0 30px rgba(56, 163, 165, 0.4)) drop-shadow(0 0 60px rgba(75, 63, 114, 0.3));
+    animation: heroLogoFloat 3s ease-in-out infinite;
+  }
+  
+  @keyframes heroLogoFloat {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+  
+  .heroSubtitle {
+    font-size: 1.25rem;
+    color: #94a3b8;
+    margin: 0 0 3rem 0;
+    line-height: 1.6;
+    letter-spacing: 0.5px;
+  }
+  
+  .heroButton {
+    padding: 1.5rem 3rem;
+    background: linear-gradient(135deg, #38a3a5 0%, #4b3f72 100%);
+    border: 2px solid rgba(56, 163, 165, 0.6);
+    clip-path: polygon(12px 0, 100% 0, calc(100% - 12px) 100%, 0 100%);
+    color: #ffffff;
+    font-size: 1.25rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .heroButton::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transform: translateX(-100%);
+    transition: transform 0.6s ease;
+  }
+  
+  .heroButton:hover {
+    background: linear-gradient(135deg, #4b3f72 0%, #38a3a5 100%);
+    box-shadow: 0 0 40px rgba(56, 163, 165, 0.6), 0 0 80px rgba(75, 63, 114, 0.4);
+    transform: translateY(-3px);
+  }
+  
+  .heroButton:hover::before {
+    transform: translateX(100%);
+  }
+  
+  .heroButtonIcon {
+    font-size: 1.5rem;
+    filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.8));
+  }
+  
+  /* Features Section */
+  .features {
+    position: relative;
+    z-index: 1;
+    padding: 5rem 2rem;
+    background: rgba(15, 17, 35, 0.5);
+    border-top: 2px solid rgba(56, 163, 165, 0.3);
+  }
+  
+  .featuresTitle {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: #ffffff;
+    text-align: center;
+    margin: 0 0 4rem 0;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: 0 0 20px rgba(56, 163, 165, 0.4);
+  }
+  
+  .featuresGrid {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+  }
+  
+  .featureCard {
+    background: rgba(15, 17, 35, 0.6);
+    border: 1px solid rgba(56, 163, 165, 0.3);
+    clip-path: polygon(15px 0, 100% 0, calc(100% - 15px) 100%, 0 100%);
+    padding: 2.5rem 2rem;
+    text-align: center;
+    transition: all 0.3s ease;
+  }
+  
+  .featureCard:hover {
+    background: rgba(56, 163, 165, 0.1);
+    border-color: rgba(56, 163, 165, 0.6);
+    box-shadow: 0 0 30px rgba(56, 163, 165, 0.3);
+    transform: translateY(-5px);
+  }
+  
+  .featureIcon {
+    font-size: 3rem;
+    margin-bottom: 1.5rem;
+    filter: drop-shadow(0 0 15px rgba(56, 163, 165, 0.5));
+  }
+  
+  .featureTitle {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #38a3a5;
+    margin: 0 0 1rem 0;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  
+  .featureDescription {
+    font-size: 1rem;
+    color: #94a3b8;
+    line-height: 1.6;
+    margin: 0;
+  }
+  
+  /* Added "How to Play" section */
+  .howToPlay {
+    position: relative;
+    z-index: 1;
+    padding: 5rem 2rem;
+    background: rgba(10, 14, 26, 0.6);
+    border-top: 2px solid rgba(75, 63, 114, 0.3);
+  }
+  
+  .howToPlayContent {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .howToPlayTitle {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: #ffffff;
+    text-align: center;
+    margin: 0 0 4rem 0;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: 0 0 20px rgba(75, 63, 114, 0.4);
+  }
+  
+  .stepsGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2.5rem;
+  }
+  
+  .step {
+    background: rgba(15, 17, 35, 0.6);
+    border: 1px solid rgba(75, 63, 114, 0.3);
+    clip-path: polygon(15px 0, 100% 0, calc(100% - 15px) 100%, 0 100%);
+    padding: 2.5rem 2rem;
+    text-align: center;
+    transition: all 0.3s ease;
+    position: relative;
+  }
+  
+  .step:hover {
+    background: rgba(75, 63, 114, 0.15);
+    border-color: rgba(75, 63, 114, 0.6);
+    box-shadow: 0 0 30px rgba(75, 63, 114, 0.3);
+    transform: translateY(-5px);
+  }
+  
+  .stepNumber {
+    font-size: 3rem;
+    font-weight: 900;
+    color: #38a3a5;
+    margin-bottom: 1rem;
+    text-shadow: 0 0 20px rgba(56, 163, 165, 0.5);
+    opacity: 0.8;
+  }
+  
+  .stepTitle {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #38a3a5;
+    margin: 0 0 1rem 0;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  
+  .stepDescription {
+    font-size: 1rem;
+    color: #94a3b8;
+    line-height: 1.6;
+    margin: 0;
+  }
+  
+  /* Footer */
+  .footer {
+    position: relative;
+    z-index: 1;
+    background: rgba(10, 14, 26, 0.9);
+    border-top: 2px solid rgba(56, 163, 165, 0.3);
+    padding: 3rem 2rem 1.5rem;
+  }
+  
+  .footerContent {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    margin-bottom: 2rem;
+  }
+  
+  .footerBrand {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .footerLogo {
+    height: auto;
+    width: 80px;
+    filter: drop-shadow(0 0 10px rgba(56, 163, 165, 0.3));
+  }
+  
+  .footerTagline {
+    font-size: 0.95rem;
+    color: #64748b;
+    margin: 0;
+    font-style: italic;
+  }
+  
+  .footerLinks {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+  }
+  
+  .footerSection {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  
+  .footerSectionTitle {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #38a3a5;
+    margin: 0 0 0.5rem 0;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  
+  .footerLink {
+    color: #94a3b8;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: all 0.2s ease;
+  }
+  
+  .footerLink:hover {
+    color: #38a3a5;
+    text-shadow: 0 0 10px rgba(56, 163, 165, 0.5);
+  }
+  
+  .footerBottom {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(56, 163, 165, 0.2);
+    text-align: center;
+  }
+  
+  .footerCopyright {
+    font-size: 0.875rem;
+    color: #64748b;
+    margin: 0;
+  }
+  
+  /* Responsive */
+  @media (max-width: 768px) {
+    /* Hide both navLinks and navAuth on mobile */
+    .navLinks,
+    .navAuth {
+      display: none;
+    }
+  
+    .navContent {
+      padding: 1rem;
+    }
+  
+    .heroLogo {
+      max-width: 200px;
+    }
+  
+    .heroSubtitle {
+      font-size: 1.1rem;
+    }
+  
+    .heroButton {
+      padding: 1.25rem 2.5rem;
+      font-size: 1.1rem;
+    }
+  
+    .featuresTitle {
+      font-size: 2rem;
+    }
+  
+    .featuresGrid {
+      grid-template-columns: 1fr;
+    }
+  
+    .howToPlayTitle {
+      font-size: 2rem;
+    }
+  
+    .stepsGrid {
+      grid-template-columns: 1fr;
+    }
+  
+    .footerContent {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+  
+    .footerLinks {
+      grid-template-columns: 1fr;
+    }
+  
+    /* Hide decorative corner accents on mobile */
+    .container::before,
+    .container::after {
+      display: none;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .navContent {
+      padding: 1rem;
+    }
+  
+    .heroLogo {
+      max-width: 160px;
+    }
+  
+    .heroSubtitle {
+      font-size: 1rem;
+    }
+  
+    .heroButton {
+      padding: 1rem 2rem;
+      font-size: 1rem;
+    }
+  
+    .features {
+      padding: 3rem 1rem;
+    }
+  
+    .featureCard {
+      padding: 2rem 1.5rem;
+    }
+  
+    .howToPlay {
+      padding: 3rem 1rem;
+    }
+  
+    .step {
+      padding: 2rem 1.5rem;
+    }
+
+    .mobileMenuButton {
+        display: block;
+      }
+  }
+  

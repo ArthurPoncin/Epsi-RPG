@@ -1,7 +1,11 @@
+import { pb } from "@/lib/pb";
 const base = "";
 
+const authHeader = () =>
+  pb.authStore.isValid ? { Authorization: `Bearer ${pb.authStore.token}` } : {};
+
 export async function getSave(slot) {
-  const res = await fetch(`${base}/api/saves/${slot}`, { cache: "no-store" });
+  const res = await fetch(`${base}/api/saves/${slot}`, { headers: { ...authHeader() } });
   const etag = res.headers.get("ETag");
   if (res.status === 404) return { status: 404 };
   const json = await res.json();
@@ -13,6 +17,7 @@ export async function putSave(slot, content, etag) {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
+      ...authHeader(),
       ...(etag ? { "If-Match": etag } : {}),
     },
     body: JSON.stringify({ content }),

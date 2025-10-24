@@ -1,18 +1,17 @@
-"use client";
-import { useSearchParams, useRouter } from "next/navigation";
+import { redirect } from "next/navigation";
 import ResetScreen from "@/ui/auth/ResetScreen";
 
-export default function ResetPasswordPage() {
-  const search = useSearchParams();
-  const token = search.get("token") || "";
-  const router = useRouter();
+export default function ResetPasswordPage({ searchParams }) {
+  const token = typeof searchParams?.token === "string" ? searchParams.token : "";
 
-  return (
-    <ResetScreen
-      token={token}
-      onSuccess={() => {
-        setTimeout(() => router.replace("/auth"), 1200);
-      }}
-    />
-  );
+  if (!token) {    
+    redirect("/auth");
+  }
+
+  return <ResetScreen token={token} onSuccess={() => { /* handled inside ResetScreen via router */ }} />;
 }
+
+// SEO: pas d'indexation
+export const metadata = {
+  robots: { index: false, follow: false },
+};

@@ -97,7 +97,6 @@
     letter-spacing: 0.5px;
   }
   
-  /* Onglets - style HUD avec accents cyan du logo */
   .tabs {
     display: flex;
     gap: 1rem;
@@ -144,7 +143,6 @@
     outline-offset: 4px;
   }
   
-  /* Bannières de message - style HUD pop-up avec couleurs du logo */
   .errorBanner,
   .successBanner {
     padding: 1rem 1.25rem;
@@ -195,7 +193,6 @@
     font-size: 1.1rem;
   }
   
-  /* Formulaire */
   .form {
     display: flex;
     flex-direction: column;
@@ -211,7 +208,6 @@
     letter-spacing: 0.3px;
   }
   
-  /* Champs */
   .field {
     display: flex;
     flex-direction: column;
@@ -229,13 +225,11 @@
     letter-spacing: 0.5px;
   }
   
-  /* Icône avec glow cyan du logo */
   .icon {
     font-size: 1rem;
     filter: drop-shadow(0 0 4px rgba(56, 163, 165, 0.6));
   }
   
-  /* Input avec bordure cyan du logo */
   .input {
     padding: 1rem 1.25rem;
     border: 1px solid rgba(56, 163, 165, 0.3);
@@ -263,7 +257,6 @@
     opacity: 0.5;
   }
   
-  /* Lien mot de passe oublié avec couleur violet du logo */
   .forgotPassword {
     text-align: right;
     margin-top: -0.75rem;
@@ -287,7 +280,6 @@
     outline-offset: 3px;
   }
   
-  /* Bouton de soumission - massif avec glow inspiré des couleurs du logo */
   .submitButton {
     padding: 1.25rem 2rem;
     background: linear-gradient(135deg, #38a3a5 0%, #4b3f72 100%);
@@ -346,7 +338,6 @@
     outline-offset: 4px;
   }
   
-  /* Spinner de chargement */
   .spinner {
     width: 18px;
     height: 18px;
@@ -362,7 +353,6 @@
     }
   }
   
-  /* Responsive */
   @media (max-width: 480px) {
     .card {
       padding: 2rem 1.5rem;
